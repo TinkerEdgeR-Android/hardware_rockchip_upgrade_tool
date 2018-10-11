@@ -1,15 +1,12 @@
 #!/system/bin/sh
 PROGRAM=${0##*/}
 
-#reset npu
-/vendor/bin/npu_powerctrl -o
-
-if [ $# -ne 4 ]; then
+if [ $# -ne 4 ]; then 
 	echo 'Usage: '$PROGRAM' loader uboot trust boot'
 	exit
 fi
 DIR="/vendor/etc/firmware/npu_fw"
-UPGRADE_TOOL=upgrade_tool
+UPGRADE_TOOL=/vendor/bin/upgrade_tool
 LOADER=$DIR/$1
 UBOOT=$DIR/$2
 TRUST=$DIR/$3
@@ -41,17 +38,23 @@ if [ ! -f $BOOT ]; then
 fi
 
 echo 'start to download loader...'
-$UPGRADE_TOOL sdb $LOADER > /dev/null
+$UPGRADE_TOOL db $LOADER > /dev/null
 if [ $? -ne 0 ]; then
 	echo 'failed to download loader!'
 	exit
 fi
 echo 'download loader ok'
 
-sleep 1
+echo 'start to wait loader...'
+$UPGRADE_TOOL td > /dev/null
+if [ $? -ne 0 ]; then
+	echo 'failed to wait loader!'
+	exit
+fi
+echo 'loader is ready' 
 
 echo 'start to write uboot...'
-$UPGRADE_TOOL sdi -u $UBOOT > /dev/null
+$UPGRADE_TOOL wl 0x40000 $UBOOT > /dev/null
 if [ $? -ne 0 ]; then
 	echo 'failed to write uboot!'
 	exit
@@ -59,7 +62,7 @@ fi
 echo 'write uboot ok'
 
 echo 'start to write trust...'
-$UPGRADE_TOOL sdi -t $TRUST > /dev/null
+$UPGRADE_TOOL wl 0x40800 $TRUST > /dev/null
 if [ $? -ne 0 ]; then
 	echo 'failed to write trust!'
 	exit
@@ -67,7 +70,7 @@ fi
 echo 'write trust ok'
 
 echo 'start to write boot...'
-$UPGRADE_TOOL sdi -b $BOOT > /dev/null
+$UPGRADE_TOOL wl 0x20000 $BOOT > /dev/null
 if [ $? -ne 0 ]; then
 	echo 'failed to write boot!'
 	exit
@@ -75,7 +78,7 @@ fi
 echo 'write boot ok'
 
 echo 'start to run system...'
-$UPGRADE_TOOL srs > /dev/null
+$UPGRADE_TOOL rs 0x40000 0x40800 > /dev/null
 if [ $? -ne 0 ]; then
 	echo 'failed to run system!'
 	exit
