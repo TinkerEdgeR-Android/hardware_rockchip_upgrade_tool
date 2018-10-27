@@ -1,6 +1,11 @@
 #!/system/bin/sh
 PROGRAM=${0##*/}
 
+#reset npu
+/vendor/bin/npu_powerctrl -i
+/vendor/bin/npu_powerctrl -o
+sleep 1
+
 if [ $# -ne 4 ]; then 
 	echo 'Usage: '$PROGRAM' loader uboot trust boot'
 	exit
