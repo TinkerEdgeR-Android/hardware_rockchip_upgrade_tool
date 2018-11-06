@@ -48,7 +48,7 @@ fi
 
 echo 'start to wait device...'
 i=0
-while [ $i -lt 5 ]; do
+while [ $i -lt 10 ]; do
 	$UPGRADE_TOOL ld > /dev/null
 	if [ $? -ne 0 ]; then
 		i=$((i+1))
@@ -57,8 +57,12 @@ while [ $i -lt 5 ]; do
 	else
 		break
 	fi
+	if [ $i -eq 5 ]; then
+		/vendor/bin/npu_powerctrl -o
+		echo 'reset npu to retry!!!'
+	fi
 done
-if [ $i -ge 5 ]; then
+if [ $i -ge 10 ]; then
 	echo 'failed to wait device!'
 	exit
 fi
