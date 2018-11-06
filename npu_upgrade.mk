@@ -6,3 +6,4 @@ PRODUCT_COPY_FILES += \
 		      hardware/rockchip/upgrade_tool/npu_fw/trust.img:vendor/etc/firmware/npu_fw/trust.img \
 		      hardware/rockchip/upgrade_tool/npu_fw/uboot.img:vendor/etc/firmware/npu_fw/uboot.img \
 		      hardware/rockchip/upgrade_tool/npu_fw/boot.img:vendor/etc/firmware/npu_fw/boot.img \
+		      hardware/rockchip/upgrade_tool/npu_fw/npu_commit_id.xml:vendor/etc/firmware/npu_fw/npu_commit_id.xml \
