@@ -19,7 +19,7 @@
     <linkfile dest="npu/tools/linux/Linux_Pack_Firmware/rockdev/mkupdate.sh" src="linux/Linux_Pack_Firmware/rockdev/rk1808-mkupdate.sh"/>
     <linkfile dest="npu/tools/linux/Linux_Pack_Firmware/rockdev/package-file" src="linux/Linux_Pack_Firmware/rockdev/rk1808-package-file"/>
   </project>
-  <project name="rk/kernel" path="npu/kernel" remote="npu" revision="87413a64ea226c82a0ef2b34b9c77543ded11230" upstream="develop-4.4"/>
+  <project name="rk/kernel" path="npu/kernel" remote="npu" revision="147ff1759ed6d837c5ca255492b21e8c89c00aae" upstream="develop-4.4"/>
   <project name="rk/prebuilts/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu" path="npu/prebuilts/gcc/linux-x86/aarch64/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu" remote="npu" revision="f96f76d6be89a6e28d4dac1f233f9aca9921f69b" upstream="master"/>
   <project name="rk/rk1108/buildroot" path="npu/buildroot" remote="npu" revision="9bf8bf6de41d7d6d8d9d583daf687466673d3e12" upstream="rockchip/2018.02-rc3">
     <linkfile dest="npu/Makefile" src="build/Makefile"/>
