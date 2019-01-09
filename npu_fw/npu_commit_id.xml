@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
   <project name="android/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9" path="npu/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9" remote="npu" revision="4b341df712969ca2ac0c3cf6294260d406b9d9be" upstream="refs/tags/android-6.0.1_r63"/>
-  <project name="android/rk/u-boot" path="npu/u-boot" remote="npu" revision="46ef77882b6b507a69f54401fbd24854dfb52f70" upstream="next-dev"/>
+  <project name="android/rk/u-boot" path="npu/u-boot" remote="npu" revision="a1e5c945ad058e602ed83e564dd636a5e0ea24e7" upstream="next-dev"/>
   <project name="linux/buildroot/dl" path="npu/buildroot/dl" remote="npu" revision="6c5a3c60b6fee1a7a78c83d20ca3f51329801665" upstream="master"/>
   <project name="linux/device/rockchip" path="npu/device/rockchip" remote="npu" revision="5f49a9dd41b4f0faebfd5c30c3c97468a4663568" upstream="master">
     <linkfile dest="npu/mkfirmware.sh" src="common/mkfirmware.sh"/>
@@ -11,7 +11,7 @@
   </project>
   <project name="linux/docs" path="npu/docs" remote="npu" revision="97f851c9c5096f0c6157326f1abb930d6dfb5f2d" upstream="master"/>
   <project name="linux/external/powermanager" path="npu/external/powermanager" remote="npu" revision="17921d6b75395df5478613973e58916a6cf7c7ad" upstream="master"/>
-  <project name="linux/external/rknpu" path="npu/external/rknpu" remote="npu" revision="998847ab279a30e0d5be83df14b396d30e5bca5d" upstream="master"/>
+  <project name="linux/external/rknpu" path="npu/external/rknpu" remote="npu" revision="d5fec7ca68401d1e87fa11271a95415df8b8cd05" upstream="master"/>
   <project name="linux/tools" path="npu/tools" remote="npu" revision="50b6ed2696a671c01799f9395b7be3d35103d588" upstream="master">
     <linkfile dest="npu/tools/windows/AndroidTool/AndroidTool_Release/config.cfg" src="windows/AndroidTool/AndroidTool_Release/rk1808-config.cfg"/>
     <linkfile dest="npu/tools/windows/AndroidTool/rockdev/package-file" src="windows/AndroidTool/rockdev/rk1808-package-file"/>
