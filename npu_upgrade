@@ -10,7 +10,7 @@ if [ $# -ne 4 ]; then
 	echo 'Usage: '$PROGRAM' loader uboot trust boot'
 	exit
 fi
-DIR="/vendor/etc/firmware/npu_fw"
+DIR="/vendor/etc/npu_fw"
 UPGRADE_TOOL=/vendor/bin/upgrade_tool
 
 LOADER=$DIR/$1
