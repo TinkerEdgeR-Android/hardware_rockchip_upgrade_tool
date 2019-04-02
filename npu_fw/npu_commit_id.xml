@@ -25,5 +25,5 @@
     <linkfile dest="npu/Makefile" src="build/Makefile"/>
     <linkfile dest="npu/envsetup.sh" src="build/envsetup.sh"/>
   </project>
-  <project name="rk/rkbin" path="npu/rkbin" remote="npu" revision="9fc33aee92908b538ca6687550be437415efae8e" upstream="master"/>
+  <project name="rk/rkbin" path="npu/rkbin" remote="npu" revision="fa3a8876a556f5352e46f1b2ca8a147f37637ed7" upstream="master"/>
 </manifest>
