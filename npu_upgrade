@@ -141,11 +141,6 @@ fi
 download_func
 if [ $? = 1 ];then
 	echo "reset download_func"
-	echo 'down load error!!! reset usb hub' >> /data/npu.log
-	echo 0 > /sys/class/gpio/gpio6/value
-	sleep 3
-	echo 1 > /sys/class/gpio/gpio6/value
-	
 	poweron_Npu_func
 	check_device_ready_func
 	download_func
