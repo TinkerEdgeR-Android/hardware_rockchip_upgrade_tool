@@ -7,20 +7,23 @@ PRODUCT_COPY_FILES += \
 endif
 
 PRODUCT_COPY_FILES += \
-    hardware/rockchip/upgrade_tool/upgrade_tool:$(TARGET_COPY_OUT_VENDOR)/bin/upgrade_tool \
-    hardware/rockchip/upgrade_tool/npu_fw/MiniLoaderAll.bin:$(TARGET_COPY_OUT_VENDOR)/etc/npu_fw/MiniLoaderAll.bin \
-    hardware/rockchip/upgrade_tool/npu_fw/trust.img:$(TARGET_COPY_OUT_VENDOR)/etc/npu_fw/trust.img \
-    hardware/rockchip/upgrade_tool/npu_fw/uboot.img:$(TARGET_COPY_OUT_VENDOR)/etc/npu_fw/uboot.img \
+    hardware/rockchip/upgrade_tool/upgrade_tool:$(TARGET_COPY_OUT_VENDOR)/bin/upgrade_tool
 
 #ifeq ($(strip $(BOARD_NPU_WITH_PCIE)),true)
 ifeq ($(BOARD_NPU_WITH_PCIE),true)
 PRODUCT_COPY_FILES += \
     hardware/rockchip/upgrade_tool/npu_upgrade_pcie:$(TARGET_COPY_OUT_VENDOR)/bin/npu_upgrade \
-    hardware/rockchip/upgrade_tool/npu_fw/boot-pcie.img:$(TARGET_COPY_OUT_VENDOR)/etc/npu_fw/boot.img \
-    hardware/rockchip/upgrade_tool/npu_fw/npu_pcie_commit_id.xml:$(TARGET_COPY_OUT_VENDOR)/etc/npu_fw/npu_commit_id.xml
+    hardware/rockchip/upgrade_tool/npu_pcie_fw/MiniLoaderAll.bin:$(TARGET_COPY_OUT_VENDOR)/etc/npu_fw/MiniLoaderAll.bin \
+    hardware/rockchip/upgrade_tool/npu_pcie_fw/boot.img:$(TARGET_COPY_OUT_VENDOR)/etc/npu_fw/boot.img \
+    hardware/rockchip/upgrade_tool/npu_pcie_fw/trust.img:$(TARGET_COPY_OUT_VENDOR)/etc/npu_fw/trust.img \
+    hardware/rockchip/upgrade_tool/npu_pcie_fw/uboot.img:$(TARGET_COPY_OUT_VENDOR)/etc/npu_fw/uboot.img \
+    hardware/rockchip/upgrade_tool/npu_pcie_fw/npu_commit_id.xml:$(TARGET_COPY_OUT_VENDOR)/etc/npu_fw/npu_commit_id.xml
 else
 PRODUCT_COPY_FILES += \
     hardware/rockchip/upgrade_tool/npu_upgrade:$(TARGET_COPY_OUT_VENDOR)/bin/npu_upgrade \
+    hardware/rockchip/upgrade_tool/npu_fw/MiniLoaderAll.bin:$(TARGET_COPY_OUT_VENDOR)/etc/npu_fw/MiniLoaderAll.bin \
     hardware/rockchip/upgrade_tool/npu_fw/boot.img:$(TARGET_COPY_OUT_VENDOR)/etc/npu_fw/boot.img \
+    hardware/rockchip/upgrade_tool/npu_fw/trust.img:$(TARGET_COPY_OUT_VENDOR)/etc/npu_fw/trust.img \
+    hardware/rockchip/upgrade_tool/npu_fw/uboot.img:$(TARGET_COPY_OUT_VENDOR)/etc/npu_fw/uboot.img \
     hardware/rockchip/upgrade_tool/npu_fw/npu_commit_id.xml:$(TARGET_COPY_OUT_VENDOR)/etc/npu_fw/npu_commit_id.xml
 endif
