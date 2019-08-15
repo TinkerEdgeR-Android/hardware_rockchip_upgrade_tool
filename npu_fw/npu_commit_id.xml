@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
+  <remote fetch="../../" name="npu" review="https://10.10.10.29"/>
+  
   <project name="android/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9" path="npu/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9" remote="npu" revision="4b341df712969ca2ac0c3cf6294260d406b9d9be" upstream="refs/tags/android-6.0.1_r63"/>
-  <project name="android/rk/u-boot" path="npu/u-boot" remote="npu" revision="d9cdd3188bda965c1704d72b1b8a57a3efc34958" upstream="next-dev"/>
-  <project name="linux/app/demo" path="npu/app/demo" remote="npu" revision="b0af21aed284508552563a1f6819c4c47bb5e370" upstream="master"/>
-  <project name="linux/app/n4" path="npu/app/n4" remote="npu" revision="edd69b19a441ac8e54c7313b92fd250b318c8c58" upstream="master"/>
-  <project name="linux/buildroot/dl" path="npu/buildroot/dl" remote="npu" revision="e7f0107304d8a61433fb040da4dcef7ce34f5af0" upstream="master"/>
-  <project name="linux/device/rockchip" path="npu/device/rockchip" remote="npu" revision="6a59e99fcb7d41940b0c57d00a9e6b1dbf5d177a" upstream="master">
+  <project name="android/rk/u-boot" path="npu/u-boot" remote="npu" revision="b1758edae0a58989b9763cb34aae09211a6db8a7" upstream="next-dev"/>
+  <project name="linux/app/n4" path="npu/app/n4" remote="npu" revision="76086ea9389de36efe7c4580af02957cdba443c0" upstream="master"/>
+  <project name="linux/buildroot/dl" path="npu/buildroot/dl" remote="npu" revision="74bc0446d1e0a477b77bb6a097b1850f44d0e33b" upstream="master"/>
+  <project name="linux/device/rockchip" path="npu/device/rockchip" remote="npu" revision="984681335ea75e581043a2828f0080967431b135" upstream="master">
     <linkfile dest="npu/mkfirmware.sh" src="common/mkfirmware.sh"/>
     <linkfile dest="npu/build.sh" src="common/build.sh"/>
     <linkfile dest="npu/rkflash.sh" src="common/rkflash.sh"/>
     <linkfile dest="npu/device/rockchip/.BoardConfig.mk" src="rk3399pro-npu/BoardConfig.mk"/>
   </project>
-  <project name="linux/docs" path="npu/docs" remote="npu" revision="aa1b2406b2cb1b836f3de09b5f67fd18137ef926" upstream="master"/>
+  <project name="linux/docs" path="npu/docs" remote="npu" revision="662c7390f90b6d3516c13bfde2f50e0c01fd5cf3" upstream="master"/>
   <project name="linux/external/camera_engine_cifisp" path="npu/external/camera_engine_cifisp" remote="npu" revision="1ca397689e2803445326dcddea49fa6b0757a416" upstream="master"/>
-  <project name="linux/external/camera_engine_rkisp" path="npu/external/camera_engine_rkisp" remote="npu" revision="fe8e1563c787d607b6bf4dea0d5f32a8662d9445" upstream="master"/>
-  <project name="linux/external/ffmpeg" path="npu/external/ffmpeg" remote="npu" revision="03582e4b7a73abe6556fb9786e48d0181a812e54" upstream="rockchip/release/4.1"/>
+  <project name="linux/external/camera_engine_rkisp" path="npu/external/camera_engine_rkisp" remote="npu" revision="4532ef4350cfb15ab49d807c7a18793f81e18d72" upstream="master"/>
   <project name="linux/external/powermanager" path="npu/external/powermanager" remote="npu" revision="17921d6b75395df5478613973e58916a6cf7c7ad" upstream="master"/>
-  <project name="linux/external/rknpu" path="npu/external/rknpu" remote="npu" revision="89347decc057cbc5a1bf19d49030544b8aae3a13" upstream="master"/>
-  <project name="linux/external/rkscript" path="npu/external/rkscript" remote="npu" revision="8bb6180dfff6850b783ca8ff33a274e2ac328e59" upstream="master"/>
-  <project name="linux/linux-rga" path="npu/external/linux-rga" remote="npu" revision="87bc5bc1053f4b9127fb252134cef8afb26c9a9c" upstream="master"/>
-  <project name="linux/rkmedia" path="npu/external/rkmedia" remote="npu" revision="cc090dbfb8d06a470a3851c07d30ecdd2bebf9d6" upstream="master"/>
-  <project name="linux/tools" path="npu/tools" remote="npu" revision="be5e30128c75cd2f1e5b587c622f4e71789cdeaa" upstream="master">
+  <project name="linux/external/rknpu" path="npu/external/rknpu" remote="npu" revision="8aa1f65a6c5236d2fc4510f4391c2b39fad47941" upstream="master"/>
+  <project name="linux/external/rkscript" path="npu/external/rkscript" remote="npu" revision="f9233f33ea28edbcb87d1b800895ab394fbb2292" upstream="master"/>
+  <project name="linux/linux-rga" path="npu/external/linux-rga" remote="npu" revision="29235b16ed7f94a8b4c754fe083782121d350799" upstream="master"/>
+  <project name="linux/rkmedia" path="npu/external/rkmedia" remote="npu" revision="c90a8d54ed184fbb2e6e75d57e9e2b6654ac78ad" upstream="master"/>
+  <project name="linux/tools" path="npu/tools" remote="npu" revision="4c417796e3d45b926124cdf4613ba25f1ee25832" upstream="master">
     <linkfile dest="npu/tools/windows/AndroidTool/AndroidTool_Release/config.cfg" src="windows/AndroidTool/AndroidTool_Release/rk1808-config.cfg"/>
     <linkfile dest="npu/tools/windows/AndroidTool/rockdev/package-file" src="windows/AndroidTool/rockdev/rk1808-package-file"/>
     <linkfile dest="npu/tools/windows/AndroidTool/rockdev/mkupdate.bat" src="windows/AndroidTool/rockdev/rk1808-mkupdate.bat"/>
     <linkfile dest="npu/tools/linux/Linux_Pack_Firmware/rockdev/mkupdate.sh" src="linux/Linux_Pack_Firmware/rockdev/rk1808-mkupdate.sh"/>
     <linkfile dest="npu/tools/linux/Linux_Pack_Firmware/rockdev/package-file" src="linux/Linux_Pack_Firmware/rockdev/rk1808-package-file"/>
   </project>
-  <project name="rk/kernel" path="npu/kernel" remote="npu" revision="51f2b2c0d091083e42a95d3f51dc30445e4ebe97" upstream="develop-4.4"/>
+  <project name="rk/kernel" path="npu/kernel" remote="npu" revision="0465ae97ec4ae193cef62fac7f27f80ad98420b5" upstream="develop-4.4"/>
   <project name="rk/prebuilts/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu" path="npu/prebuilts/gcc/linux-x86/aarch64/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu" remote="npu" revision="f96f76d6be89a6e28d4dac1f233f9aca9921f69b" upstream="master"/>
-  <project name="rk/rk1108/buildroot" path="npu/buildroot" remote="npu" revision="55bf1a92ffdaca02baa1db9a31ba90766b0d9e34" upstream="rockchip/2018.02-rc3">
+  <project name="rk/rk1108/buildroot" path="npu/buildroot" remote="npu" revision="9a1cbfba7526e3dcd92c1805571f9a7c8ddd953a" upstream="rockchip/2018.02-rc3">
     <linkfile dest="npu/Makefile" src="build/Makefile"/>
     <linkfile dest="npu/envsetup.sh" src="build/envsetup.sh"/>
   </project>
-  <project name="rk/rkbin" path="npu/rkbin" remote="npu" revision="0b8a4e66958b5d3d87fc61fc4bd8e069c79e931a" upstream="master"/>
+  <project name="rk/rkbin" path="npu/rkbin" remote="npu" revision="02c56200b20b97d5829cf93e8b274c9624e92b1c" upstream="master"/>
 </manifest>
