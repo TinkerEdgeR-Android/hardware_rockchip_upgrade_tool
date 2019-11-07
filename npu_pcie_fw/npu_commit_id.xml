@@ -17,7 +17,7 @@
   <project name="linux/external/camera_engine_rkisp" path="npu/external/camera_engine_rkisp" remote="npu" revision="888093f5a734a00643deb0ddea006b79c9fe4d4f" upstream="master"/>
   <project name="linux/external/powermanager" path="npu/external/powermanager" remote="npu" revision="17921d6b75395df5478613973e58916a6cf7c7ad" upstream="master"/>
   <project name="linux/external/rknpu" path="npu/external/rknpu" remote="npu" revision="8aa1f65a6c5236d2fc4510f4391c2b39fad47941" upstream="master"/>
-  <project name="linux/external/rkscript" path="npu/external/rkscript" remote="npu" revision="e8d3fce0cc1acae82c715f99fc72c288cf192fe6" upstream="master"/>
+  <project name="linux/external/rkscript" path="npu/external/rkscript" remote="npu" revision="00794eb93c999efaaccc407a5afaccbffd64c93b" upstream="master"/>
   <project name="linux/linux-rga" path="npu/external/linux-rga" remote="npu" revision="29235b16ed7f94a8b4c754fe083782121d350799" upstream="master"/>
   <project name="linux/rkmedia" path="npu/external/rkmedia" remote="npu" revision="6848a649235e4923868f4f6b0c5272784de72d63" upstream="master"/>
   <project name="linux/tools" path="npu/tools" remote="npu" revision="4c417796e3d45b926124cdf4613ba25f1ee25832" upstream="master">
@@ -27,7 +27,7 @@
     <linkfile dest="npu/tools/linux/Linux_Pack_Firmware/rockdev/mkupdate.sh" src="linux/Linux_Pack_Firmware/rockdev/rk1808-mkupdate.sh"/>
     <linkfile dest="npu/tools/linux/Linux_Pack_Firmware/rockdev/package-file" src="linux/Linux_Pack_Firmware/rockdev/rk1808-package-file"/>
   </project>
-  <project name="rk/kernel" path="npu/kernel" remote="npu" revision="0bdd907b49d41adb34a187d17c25c2a6f681c059" upstream="develop-4.4"/>
+  <project name="rk/kernel" path="npu/kernel" remote="npu" revision="573e63b2c33b239a9400c975cafbf3c84616e282" upstream="develop-4.4"/>
   <project name="rk/prebuilts/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu" path="npu/prebuilts/gcc/linux-x86/aarch64/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu" remote="npu" revision="f96f76d6be89a6e28d4dac1f233f9aca9921f69b" upstream="master"/>
   <project name="rk/rk1108/buildroot" path="npu/buildroot" remote="npu" revision="1f6baebdc98ffdc1d1575729afdc5881bee286ad" upstream="rockchip/2018.02-rc3">
     <linkfile dest="npu/Makefile" src="build/Makefile"/>
