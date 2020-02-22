@@ -1,0 +1,136 @@
+From 4f1900335846f885f5d451169e2c94ce23942ac9 Mon Sep 17 00:00:00 2001
+From: Weixin Zhou <zwx@rock-chips.com>
+Date: Thu, 9 Jan 2020 14:27:20 +0800
+Subject: [PATCH 2/4] arm64: dts: rockchip: set npu sleep with pvtm 32k for
+ rk3399pro-npu
+
+Change-Id: I45cba07b58e2d35f8088dba6ec9b7442001e2312
+Signed-off-by: Weixin Zhou <zwx@rock-chips.com>
+---
+ .../rockchip/rk3399pro-npu-evb-v10-multi-cam.dts   | 30 ++++++++++++----
+ .../boot/dts/rockchip/rk3399pro-npu-evb-v10.dts    | 42 ++++++++++++++--------
+ arch/arm64/boot/dts/rockchip/rk3399pro-npu.dtsi    |  1 -
+ 3 files changed, 52 insertions(+), 21 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399pro-npu-evb-v10-multi-cam.dts b/arch/arm64/boot/dts/rockchip/rk3399pro-npu-evb-v10-multi-cam.dts
+index aa0f0ed..5aa4a68 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399pro-npu-evb-v10-multi-cam.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399pro-npu-evb-v10-multi-cam.dts
+@@ -378,17 +378,35 @@
+ };
+ 
+ &pinctrl {
+-	vsel_gpio: vsel-gpio {
+-		rockchip,pins =
+-			<0 RK_PC6 0 &pcfg_pull_down>;
++	vdd-npu-sleep {
++		vsel_gpio: vsel-gpio {
++			rockchip,pins =
++				<0 RK_PC6 0 &pcfg_pull_down>;
++		};
++	};
++
++	key {
++		pwr_key: pwr-key {
++			rockchip,pins =
++				<0 RK_PB0 0 &pcfg_pull_none>;
++		};
+ 	};
+ 
+-	pwr_key: pwr-key {
+-		rockchip,pins =
+-			<0 RK_PB0 0 &pcfg_pull_none>;
++	rockchip-suspend {
++		clk_gpio: clk-gpio {
++			rockchip,pins =
++				<0 RK_PC2 0 &pcfg_pull_down>;
++		};
+ 	};
+ };
+ 
++&rockchip_suspend {
++	status = "okay";
++	rockchip,sleep-debug-en = <1>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&clk_gpio>;
++};
++
+ &vop_raw {
+ 	status = "okay";
+ 	assigned-clocks = <&cru DCLK_VOPRAW>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399pro-npu-evb-v10.dts b/arch/arm64/boot/dts/rockchip/rk3399pro-npu-evb-v10.dts
+index 15b6b5f..ed4a7d7 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399pro-npu-evb-v10.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399pro-npu-evb-v10.dts
+@@ -118,12 +118,38 @@
+ 	status = "okay";
+ };
+ 
+-&rockchip_suspend {
++&combphy {
+ 	status = "okay";
+ };
+ 
+-&combphy {
++&pinctrl {
++	vdd-npu-sleep {
++		vsel_gpio: vsel-gpio {
++			rockchip,pins =
++				<0 RK_PC6 0 &pcfg_pull_down>;
++		};
++	};
++
++	key {
++		pwr_key: pwr-key {
++			rockchip,pins =
++				<0 RK_PB0 0 &pcfg_pull_none>;
++		};
++	};
++
++	rockchip-suspend {
++		clk_gpio: clk-gpio {
++			rockchip,pins =
++				<0 RK_PC2 0 &pcfg_pull_down>;
++		};
++	};
++};
++
++&rockchip_suspend {
+ 	status = "okay";
++	rockchip,sleep-debug-en = <1>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&clk_gpio>;
+ };
+ 
+ &u2phy {
+@@ -150,15 +176,3 @@
+ 	pinctrl-1 = <&tsadc_otp_out>;
+ 	status = "okay";
+ };
+-
+-&pinctrl {
+-	vsel_gpio: vsel-gpio {
+-		rockchip,pins =
+-			<0 RK_PC6 0 &pcfg_pull_down>;
+-	};
+-
+-	pwr_key: pwr-key {
+-		rockchip,pins =
+-			<0 RK_PB0 0 &pcfg_pull_none>;
+-	};
+-};
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399pro-npu.dtsi b/arch/arm64/boot/dts/rockchip/rk3399pro-npu.dtsi
+index 11e15de..b2f98b5 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399pro-npu.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399pro-npu.dtsi
+@@ -114,7 +114,6 @@
+ 			| RKPM_SLP_ARMOFF
+ 			| RKPM_SLP_PMU_PMUALIVE_32K
+ 			| RKPM_SLP_PMU_DIS_OSC
+-			| RKPM_SLP_32K_EXT
+ 			)
+ 		>;
+ 		rockchip,wakeup-config = <
+-- 
+2.7.4
+

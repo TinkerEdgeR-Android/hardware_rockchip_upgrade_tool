@@ -1,0 +1,30 @@
+From e615ef48404af17bb7d2f7d2c0c3870e559bc1e8 Mon Sep 17 00:00:00 2001
+From: Simon Xue <xxm@rock-chips.com>
+Date: Mon, 30 Sep 2019 10:53:14 +0800
+Subject: [PATCH 08/13] phy: rockchip: reset phy when phy exit
+
+In case of ep auto relinking when resume, need to
+reset phy before ep suspend
+
+Change-Id: Ib25a35d484108dd05ddbaa860e99581c4d59e0cc
+Signed-off-by: Simon Xue <xxm@rock-chips.com>
+---
+ drivers/phy/rockchip/phy-rockchip-pcie.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/drivers/phy/rockchip/phy-rockchip-pcie.c b/drivers/phy/rockchip/phy-rockchip-pcie.c
+index b39fb8c..bf4c671 100644
+--- a/drivers/phy/rockchip/phy-rockchip-pcie.c
++++ b/drivers/phy/rockchip/phy-rockchip-pcie.c
+@@ -253,6 +253,8 @@ static int rockchip_pcie_phy_exit(struct phy *phy)
+ 
+ 	clk_disable_unprepare(rk_phy->clk_pciephy_ref);
+ 
++	reset_control_assert(rk_phy->phy_rst);
++	udelay(5);
+ 	err = reset_control_deassert(rk_phy->phy_rst);
+ 	if (err) {
+ 		pr_err("deassert phy_rst err %d\n", err);
+-- 
+2.7.4
+

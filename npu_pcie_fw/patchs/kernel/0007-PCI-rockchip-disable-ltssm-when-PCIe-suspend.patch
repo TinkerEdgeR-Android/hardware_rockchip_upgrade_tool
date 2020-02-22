@@ -1,0 +1,72 @@
+From 9a98b3f808b088e480f9d5442c186d6261c1a065 Mon Sep 17 00:00:00 2001
+From: Simon Xue <xxm@rock-chips.com>
+Date: Mon, 30 Sep 2019 10:47:54 +0800
+Subject: [PATCH 07/13] PCI: rockchip: disable ltssm when PCIe suspend
+
+In case of ep auto relinking when resume,
+we need to disable ltssm of rc first before ep suspend
+
+Change-Id: If526c34bc6a5d93d8e20288c2645ffc3b5f4f5e3
+Signed-off-by: Simon Xue <xxm@rock-chips.com>
+---
+ drivers/pci/host/pcie-rockchip.c | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+diff --git a/drivers/pci/host/pcie-rockchip.c b/drivers/pci/host/pcie-rockchip.c
+index a8220eb..028d89f 100644
+--- a/drivers/pci/host/pcie-rockchip.c
++++ b/drivers/pci/host/pcie-rockchip.c
+@@ -53,6 +53,7 @@
+ #define PCIE_CLIENT_CONFIG		(PCIE_CLIENT_BASE + 0x00)
+ #define   PCIE_CLIENT_CONF_ENABLE	  HIWORD_UPDATE_BIT(0x0001)
+ #define   PCIE_CLIENT_LINK_TRAIN_ENABLE	  HIWORD_UPDATE_BIT(0x0002)
++#define   PCIE_CLIENT_LINK_TRAIN_DISABLE  HIWORD_UPDATE(0x0002, 0x0000)
+ #define   PCIE_CLIENT_ARI_ENABLE	  HIWORD_UPDATE_BIT(0x0008)
+ #define   PCIE_CLIENT_CONF_LANE_NUM(x)	  HIWORD_UPDATE(0x0030, ENCODE_LANES(x))
+ #define   PCIE_CLIENT_MODE_RC		  HIWORD_UPDATE_BIT(0x0040)
+@@ -60,6 +61,7 @@
+ #define   PCIE_CLIENT_GEN_SEL_2		  HIWORD_UPDATE_BIT(0x0080)
+ #define PCIE_CLIENT_DEBUG_OUT_0		(PCIE_CLIENT_BASE + 0x3c)
+ #define   PCIE_CLIENT_DEBUG_LTSSM_MASK		GENMASK(5, 0)
++#define   PCIE_CLIENT_DEBUG_LTSSM_L0		0x10
+ #define   PCIE_CLIENT_DEBUG_LTSSM_L1		0x18
+ #define   PCIE_CLIENT_DEBUG_LTSSM_L2		0x19
+ #define PCIE_CLIENT_BASIC_STATUS1	(PCIE_CLIENT_BASE + 0x48)
+@@ -203,6 +205,8 @@
+ #define PCIE_ECAM_ADDR(bus, dev, func, reg) \
+ 	  (PCIE_ECAM_BUS(bus) | PCIE_ECAM_DEV(dev) | \
+ 	   PCIE_ECAM_FUNC(func) | PCIE_ECAM_REG(reg))
++#define PCIE_LINK_IS_L0(x) \
++	(((x) & PCIE_CLIENT_DEBUG_LTSSM_MASK) == PCIE_CLIENT_DEBUG_LTSSM_L0)
+ #define PCIE_LINK_IS_L2(x) \
+ 	(((x) & PCIE_CLIENT_DEBUG_LTSSM_MASK) == PCIE_CLIENT_DEBUG_LTSSM_L2)
+ #define PCIE_LINK_UP(x) \
+@@ -659,6 +663,14 @@ static int rockchip_pcie_init_port(struct rockchip_pcie *rockchip)
+ 		return -ETIMEDOUT;
+ 	}
+ 
++	err = readl_poll_timeout(rockchip->apb_base + PCIE_CLIENT_DEBUG_OUT_0,
++				 status, PCIE_LINK_IS_L0(status), 20,
++				 timeouts * USEC_PER_MSEC);
++	if (err) {
++		dev_err(dev, "LTSSM is not L0!\n");
++		return -ETIMEDOUT;
++	}
++
+ 	if (rockchip->link_gen == 2) {
+ 		/*
+ 		 * Enable retrain for gen2. This should be configured only after
+@@ -1351,6 +1363,10 @@ static int __maybe_unused rockchip_pcie_suspend_noirq(struct device *dev)
+ 	struct rockchip_pcie *rockchip = dev_get_drvdata(dev);
+ 	int ret;
+ 
++	/* disable ltssm */
++	rockchip_pcie_write(rockchip, PCIE_CLIENT_LINK_TRAIN_DISABLE,
++			    PCIE_CLIENT_CONFIG);
++
+ 	/* disable core and cli int since we don't need to ack PME_ACK */
+ 	rockchip_pcie_write(rockchip, (PCIE_CLIENT_INT_CLI << 16) |
+ 			    PCIE_CLIENT_INT_CLI, PCIE_CLIENT_INT_MASK);
+-- 
+2.7.4
+

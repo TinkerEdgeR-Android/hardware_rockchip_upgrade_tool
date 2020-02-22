@@ -1,0 +1,35 @@
+From 663e43b10722a93ef3028c8b2d5f34dc69f0de6f Mon Sep 17 00:00:00 2001
+From: Simon Xue <xxm@rock-chips.com>
+Date: Mon, 30 Sep 2019 11:19:59 +0800
+Subject: [PATCH 09/13] arm64: dts: rockchip: rk3399pro-npu: add usb3phy_grf_p
+ for combo phy
+
+reset phy completely when PCIe suspended in case of waiting phy PLL lock timeout
+
+Change-Id: I0deab20eb058b86577cc6121ebeadef8bdc87fbf
+Signed-off-by: Simon Xue <xxm@rock-chips.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3399pro-npu.dtsi | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399pro-npu.dtsi b/arch/arm64/boot/dts/rockchip/rk3399pro-npu.dtsi
+index 11e15de..86215c4 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399pro-npu.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399pro-npu.dtsi
+@@ -508,9 +508,11 @@
+ 		assigned-clocks = <&cru SCLK_PCIEPHY_REF>;
+ 		assigned-clock-rates = <25000000>;
+ 		resets = <&cru SRST_USB3_OTG_A>, <&cru SRST_PCIEPHY_POR>,
+-			 <&cru SRST_PCIEPHY_P>, <&cru SRST_PCIEPHY_PIPE>;
++			 <&cru SRST_PCIEPHY_P>, <&cru SRST_PCIEPHY_PIPE>,
++			 <&cru SRST_USB3PHY_GRF_P>;
+ 		reset-names = "otg-rst", "combphy-por",
+-			      "combphy-apb", "combphy-pipe";
++			      "combphy-apb", "combphy-pipe",
++			      "usb3phy_grf_p";
+ 		rockchip,combphygrf = <&combphy_grf>;
+ 		rockchip,usbpciegrf = <&usb_pcie_grf>;
+ 		status = "disabled";
+-- 
+2.7.4
+

@@ -1,0 +1,42 @@
+From c3ead68efbbae5c1872af47227f708bff12d5b3e Mon Sep 17 00:00:00 2001
+From: Kaige Li <kevin.li@rock-chips.com>
+Date: Tue, 17 Sep 2019 11:21:28 +0800
+Subject: [PATCH 04/13] media: platform: add camera support hotplug for n4.
+
+Change-Id: Id9868021c6e959f0e5f286a609a57c95b0af8e09
+Signed-off-by: Kaige Li <kevin.li@rock-chips.com>
+---
+ drivers/media/platform/rockchip/cif/capture.c | 4 ++++
+ drivers/media/platform/rockchip/cif/version.h | 1 +
+ 2 files changed, 5 insertions(+)
+
+diff --git a/drivers/media/platform/rockchip/cif/capture.c b/drivers/media/platform/rockchip/cif/capture.c
+index 32523a3..0a06611 100644
+--- a/drivers/media/platform/rockchip/cif/capture.c
++++ b/drivers/media/platform/rockchip/cif/capture.c
+@@ -736,6 +736,10 @@ static int rkcif_csi_channel_init(struct rkcif_stream *stream,
+ 		channel->crop_st_y = stream->crop.top;
+ 		channel->width = stream->crop.width;
+ 		channel->height = stream->crop.height;
++	} else {
++		channel->width = stream->pixm.width;
++		channel->height = stream->pixm.height;
++		channel->crop_en = 1;
+ 	}
+ 
+ 	fmt = find_output_fmt(stream, stream->pixm.pixelformat);
+diff --git a/drivers/media/platform/rockchip/cif/version.h b/drivers/media/platform/rockchip/cif/version.h
+index c37c522..0f5bb4e 100644
+--- a/drivers/media/platform/rockchip/cif/version.h
++++ b/drivers/media/platform/rockchip/cif/version.h
+@@ -21,6 +21,7 @@
+  *6. fix the bug that dummpy buffer size is error
+  *7. Add framesizes and frmintervals callback
+  *8. fix dvp camera fails to link with cif on rk1808
++ *9. add camera support hotplug for n4
+  */
+ 
+ #define RKCIF_DRIVER_VERSION KERNEL_VERSION(0, 1, 0x2)
+-- 
+2.7.4
+

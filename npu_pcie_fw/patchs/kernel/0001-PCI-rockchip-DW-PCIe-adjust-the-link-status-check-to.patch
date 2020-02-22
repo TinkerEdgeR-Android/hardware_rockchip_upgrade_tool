@@ -1,0 +1,37 @@
+From 5498b613fbcd355903cb1bedc601de8c770cd7b2 Mon Sep 17 00:00:00 2001
+From: Weixin Zhou <zwx@rock-chips.com>
+Date: Wed, 21 Aug 2019 17:20:46 +0800
+Subject: [PATCH 01/13] PCI: rockchip: DW PCIe adjust the link status check to
+ per 1ms
+
+Change-Id: Ie29c73a49073001825c1b5746bdbb1b06ca1d3a9
+Signed-off-by: Weixin Zhou <zwx@rock-chips.com>
+---
+ drivers/pci/host/pcie-dw-rockchip.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/pci/host/pcie-dw-rockchip.c b/drivers/pci/host/pcie-dw-rockchip.c
+index 22c7a56..2d7b937a 100644
+--- a/drivers/pci/host/pcie-dw-rockchip.c
++++ b/drivers/pci/host/pcie-dw-rockchip.c
+@@ -624,14 +624,14 @@ static int rk_pcie_establish_link(struct rk_pcie *rk_pcie)
+ 	/* Enable LTSSM */
+ 	rk_pcie_enable_ltssm(rk_pcie);
+ 
+-	for (retries = 0; retries < 1000; retries++) {
++	for (retries = 0; retries < 1000000; retries++) {
+ 		if (rk_pcie_link_up(rk_pcie)) {
+ 			dev_info(rk_pcie->dev, "PCIe Link up\n");
+ 			return 0;
+ 		}
+ 
+-		dev_info(rk_pcie->dev, "PCIe Linking...\n");
+-		mdelay(1000);
++		dev_info_ratelimited(rk_pcie->dev, "PCIe Linking...\n");
++		mdelay(1);
+ 	}
+ 
+ 	dev_err(rk_pcie->dev, "PCIe Link Fail\n");
+-- 
+2.7.4
+

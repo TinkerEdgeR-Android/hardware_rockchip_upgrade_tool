@@ -1,0 +1,29 @@
+From 799c0b4b574c5514d68f2c86a157bf796b0e7fd4 Mon Sep 17 00:00:00 2001
+From: Weixin Zhou <zwx@rock-chips.com>
+Date: Fri, 20 Sep 2019 15:21:56 +0800
+Subject: [PATCH 1/4] arm64: rk3399pro_npu_defconfig: add net config for adb
+
+Change-Id: I63c411c0560c589e9136afe7633babd382adced4
+Signed-off-by: Weixin Zhou <zwx@rock-chips.com>
+---
+ arch/arm64/configs/rk3399pro_npu_defconfig | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/arch/arm64/configs/rk3399pro_npu_defconfig b/arch/arm64/configs/rk3399pro_npu_defconfig
+index e3ed388..9cc2cae 100644
+--- a/arch/arm64/configs/rk3399pro_npu_defconfig
++++ b/arch/arm64/configs/rk3399pro_npu_defconfig
+@@ -57,6 +57,10 @@ CONFIG_CPU_FREQ=y
+ CONFIG_CPU_FREQ_DEFAULT_GOV_USERSPACE=y
+ CONFIG_CPUFREQ_DT=y
+ CONFIG_ARM_ROCKCHIP_CPUFREQ=y
++CONFIG_NET=y
++CONFIG_UNIX=y
++CONFIG_INET=y
++CONFIG_SYN_COOKIES=y
+ CONFIG_DEVTMPFS=y
+ CONFIG_DEVTMPFS_MOUNT=y
+ # CONFIG_ALLOW_DEV_COREDUMP is not set
+-- 
+2.7.4
+

@@ -1,0 +1,94 @@
+From 25db4884b071ffcd0871be266f51bbdfd3037d58 Mon Sep 17 00:00:00 2001
+From: Kaige Li <kevin.li@rock-chips.com>
+Date: Thu, 26 Sep 2019 20:27:20 +0800
+Subject: [PATCH 10/13] media: platform: rockchip: changed capture.c for system
+ crash question.
+
+The reason why system crashed is that cif iommu can't reinit when n4
+camera is opened after system sleeping and resuming. Maybe called pd
+vio close and open. This is the crash log:
+
+init n4 camera successfully
+[0]: 0,0-640,720 -> 0,0-640,720
+[1]: 0,0-640,720 -> 640,0-640,720
+[2]: 0,0-640,720 -> 0,720-640,720
+[3]: 0,0-640,720 -> 640,720-640,720
+init rga successfully
+conn id : 69, enc id: 68, crtc id: 59, plane id: 58, w/h: 5120,1440,
+fps: 7
+init drm successfully
+[  560.900522] rkcif: Allocate dummy buffer, size: 0x001c2000
+[  560.903499] rkcif: Allocate dummy buffer, size: 0x001c2000
+[  560.903713] rockchip-mipi-csi2 ffb10000.mipi-csi2: stream ON,
+src_sd: ffffffc07cc280f8
+[  560.903755] rockchip-mipi-csi2 ffb10000.mipi-csi2: stream ON
+[  560.903796] rockchip-mipi-csi2: mipi csi host enable
+[  560.903841] rkcif: Allocate dummy buffer, size: 0x001c2000
+[  560.903847] rkcif: rkcif_start_streaming successfully!
+[  560.903899] rkcif: rkcif_start_streaming successfully!
+[  560.903963] rkcif: rkcif_start_streaming successfully!
+[  560.905930] rkcif: Allocate dummy buffer, size: 0x001c2000
+[  560.905986] rkcif: rkcif_start_streaming successfully!
+Opened DRM device /dev/dri/card0: driver rockchip version 1.0.0.
+[  563.183233] Unexpected interrupt received!
+[  563.183245] Unhandled fault: synchronous external abort
+(0x96000010) at 0xffffff8008be61b4
+[  563.183263] Internal error: : 96000010 [#1] PREEMPT SMP
+[  563.183272] Modules linked in:
+[  563.183285] CPU: 1 PID: 0 Comm: swapper/1 Tainted: G        W
+4.4.189 #14
+[  563.183290] Hardware name: Rockchip RK3399pro-npu EVB V10 multi
+cam Board (DT)
+[  563.183297] task: ffffffc07d528000 task.stack:
+ffffffc07d530000
+[  563.183311] PC is at vepu_irq+0x30/0x118
+[  563.183323] LR is at handle_irq_event_percpu+0x98/0x128
+[  563.183329] pc : [<ffffff80082a08f4>] lr :
+[<ffffff80080d2794>] pstate: 000001c5
+[  563.183333] sp : ffffffc07ffa4eb0
+[  563.183343] x29: ffffffc07ffa4eb0 x28: ffffffc07d528000
+[  563.183352] x27: 0000000000000001 x26: ffffffc07ffa5050
+[  563.183362] x25: ffffff80087aa0ba x24: ffffffc07cd3dcd8
+[  563.183371] x23: ffffff8008968e09 x22: ffffffc07d763018
+[  563.183381] x21: ffffffc07cd3dc18 x20: ffffff800891cc80
+[  563.183390] x19: ffffff8008be61b4 x18: 00000000005b5400
+[  563.183399] x17: 0000000000544c00 x16: 0000000000000000
+[  563.183408] x15: 0000000000000000 x14: 00000000001c2000
+[  563.183418] x13: 0000000000000000 x12: 0000000000232800
+[  563.183427] x11: 00000000bd08a39e x10: 00000000000006e0
+[  563.183436] x9 : ffffffc07d533ef0 x8 : ffffffc07d0000e0
+
+Change-Id: I5e3840c3eb682bcb3038506f9055adb1a68a2d85
+Signed-off-by: Kaige Li <kevin.li@rock-chips.com>
+---
+ drivers/media/platform/rockchip/cif/capture.c | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/media/platform/rockchip/cif/capture.c b/drivers/media/platform/rockchip/cif/capture.c
+index 0a06611..a69bff9 100644
+--- a/drivers/media/platform/rockchip/cif/capture.c
++++ b/drivers/media/platform/rockchip/cif/capture.c
+@@ -1596,11 +1596,17 @@ static int rkcif_fh_open(struct file *filp)
+ 	 * Because CRU would reset iommu too, so there's not chance
+ 	 * to reset cif once we hold buffers after buf queued
+ 	 */
+-	if (cifdev->chip_id == CHIP_RK1808_CIF)
++	if (cifdev->chip_id == CHIP_RK1808_CIF) {
++		mutex_lock(&cifdev->stream_lock);
++		v4l2_info(&cifdev->v4l2_dev, "fh_cnt: %d\n",
++					atomic_read(&cifdev->fh_cnt));
++		if (!atomic_read(&cifdev->fh_cnt))
++			rkcif_soft_reset(cifdev, true);
+ 		atomic_inc(&cifdev->fh_cnt);
+-	else
++		mutex_unlock(&cifdev->stream_lock);
++	} else {
+ 		rkcif_soft_reset(cifdev, true);
+-
++	}
+ 	return v4l2_fh_open(filp);
+ }
+ 
+-- 
+2.7.4
+
