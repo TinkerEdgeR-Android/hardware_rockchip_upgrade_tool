@@ -1,0 +1,36 @@
+From c5d31495d77fd673d50414d6f6d08463fabf9d70 Mon Sep 17 00:00:00 2001
+From: Weixin Zhou <zwx@rock-chips.com>
+Date: Mon, 21 Oct 2019 18:20:02 +0800
+Subject: [PATCH] 50usbdevice: move n4 start to S51n4
+
+Change-Id: Ib55496dabd5cf9569f3a39f97dad7ae7c385eff7
+Signed-off-by: Weixin Zhou <zwx@rock-chips.com>
+---
+ S50usbdevice |  0
+ S51n4        | 10 ++++++++++
+ 2 files changed, 10 insertions(+)
+ mode change 100644 => 100755 S50usbdevice
+ create mode 100755 S51n4
+
+diff --git a/S50usbdevice b/S50usbdevice
+old mode 100644
+new mode 100755
+diff --git a/S51n4 b/S51n4
+new file mode 100755
+index 0000000..3c5d050
+--- /dev/null
++++ b/S51n4
+@@ -0,0 +1,10 @@
++#!/bin/sh
++#
++# start n4
++#
++if [ -f "/usr/bin/n4" ]
++then
++	sleep 5
++	echo "start n4"
++	n4 &
++fi
+-- 
+2.7.4
+
