@@ -1,0 +1,25 @@
+From 2ac6836d42e53b9c1ff64d2a4a17440b93f072b6 Mon Sep 17 00:00:00 2001
+From: Weixin Zhou <zwx@rock-chips.com>
+Date: Thu, 20 Feb 2020 08:42:39 +0800
+Subject: [PATCH 2/3] configs: rockchip_rk3399pro-npu-multi-cam_defconfig: add
+ BR2_PACKAGE_LRZSZ
+
+Change-Id: I2b014094570895d5029d629a871dac03680b65e6
+Signed-off-by: Weixin Zhou <zwx@rock-chips.com>
+---
+ configs/rockchip_rk3399pro-npu-multi-cam_defconfig | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/configs/rockchip_rk3399pro-npu-multi-cam_defconfig b/configs/rockchip_rk3399pro-npu-multi-cam_defconfig
+index 2fe2c32..b671000 100644
+--- a/configs/rockchip_rk3399pro-npu-multi-cam_defconfig
++++ b/configs/rockchip_rk3399pro-npu-multi-cam_defconfig
+@@ -19,4 +19,5 @@ BR2_PACKAGE_N4=y
+ #  - input event daemon used to handle key event, ie. power on/off system
+ BR2_PACKAGE_INPUT_EVENT_DAEMON=y
+ BR2_PACKAGE_PM_UTILS=y
++BR2_PACKAGE_LRZSZ=y
+ 
+-- 
+2.7.4
+
