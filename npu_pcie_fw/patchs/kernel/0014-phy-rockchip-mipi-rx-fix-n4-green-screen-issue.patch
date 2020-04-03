@@ -1,7 +1,7 @@
-From 78ae62710e549405d9ad21fd84c6ee1d7c5d7869 Mon Sep 17 00:00:00 2001
+From cb788e8ed25bd1a8a819cf3da60e09495e9bef53 Mon Sep 17 00:00:00 2001
 From: Weixin Zhou <zwx@rock-chips.com>
 Date: Thu, 19 Mar 2020 11:22:24 +0800
-Subject: [PATCH] phy: rockchip: mipi-rx: fix n4 green screen issue
+Subject: [PATCH 14/17] phy: rockchip: mipi-rx: fix n4 green screen issue
 
 Change-Id: I551a94ab6f673ed5d2df274f58e67c3fbe776211
 Signed-off-by: Weixin Zhou <zwx@rock-chips.com>

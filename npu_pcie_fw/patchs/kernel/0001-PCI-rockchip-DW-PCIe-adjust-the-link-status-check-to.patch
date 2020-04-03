@@ -1,7 +1,7 @@
-From 5498b613fbcd355903cb1bedc601de8c770cd7b2 Mon Sep 17 00:00:00 2001
+From 19d79f1c95d69254245eeb7b7a4a2499e2988614 Mon Sep 17 00:00:00 2001
 From: Weixin Zhou <zwx@rock-chips.com>
 Date: Wed, 21 Aug 2019 17:20:46 +0800
-Subject: [PATCH 01/13] PCI: rockchip: DW PCIe adjust the link status check to
+Subject: [PATCH 01/17] PCI: rockchip: DW PCIe adjust the link status check to
  per 1ms
 
 Change-Id: Ie29c73a49073001825c1b5746bdbb1b06ca1d3a9

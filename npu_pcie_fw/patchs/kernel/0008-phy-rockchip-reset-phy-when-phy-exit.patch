@@ -1,7 +1,7 @@
-From e615ef48404af17bb7d2f7d2c0c3870e559bc1e8 Mon Sep 17 00:00:00 2001
+From bdf8c646203f66c9da8679a5dd880b6ec96ab0fb Mon Sep 17 00:00:00 2001
 From: Simon Xue <xxm@rock-chips.com>
 Date: Mon, 30 Sep 2019 10:53:14 +0800
-Subject: [PATCH 08/13] phy: rockchip: reset phy when phy exit
+Subject: [PATCH 08/17] phy: rockchip: reset phy when phy exit
 
 In case of ep auto relinking when resume, need to
 reset phy before ep suspend

@@ -1,7 +1,7 @@
-From 663e43b10722a93ef3028c8b2d5f34dc69f0de6f Mon Sep 17 00:00:00 2001
+From 15a8d3860ac61bdddc959658ce3d19726aef861e Mon Sep 17 00:00:00 2001
 From: Simon Xue <xxm@rock-chips.com>
 Date: Mon, 30 Sep 2019 11:19:59 +0800
-Subject: [PATCH 09/13] arm64: dts: rockchip: rk3399pro-npu: add usb3phy_grf_p
+Subject: [PATCH 09/17] arm64: dts: rockchip: rk3399pro-npu: add usb3phy_grf_p
  for combo phy
 
 reset phy completely when PCIe suspended in case of waiting phy PLL lock timeout

@@ -1,7 +1,7 @@
-From 0626483a0e1dd33741ef7e01eb1ced75e1407132 Mon Sep 17 00:00:00 2001
+From b2c20fe770c89d06ea8025e625a8e91a9bab24ff Mon Sep 17 00:00:00 2001
 From: Liang Chen <cl@rock-chips.com>
 Date: Wed, 19 Feb 2020 10:07:24 +0800
-Subject: [PATCH 13/13] arm64: dts: rockchip: rk3399pro-npu: adjust npu
+Subject: [PATCH 13/17] arm64: dts: rockchip: rk3399pro-npu: adjust npu
  opp-table
 
 NPU will hang up sometimes with default opp-table:

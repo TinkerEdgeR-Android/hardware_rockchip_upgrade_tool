@@ -1,7 +1,7 @@
-From 397980817e28f8895ed8014ee687a78a18d1370e Mon Sep 17 00:00:00 2001
+From 204d5200ec014c12a5977cf4c8b17b86312c9629 Mon Sep 17 00:00:00 2001
 From: Liang Chen <cl@rock-chips.com>
 Date: Tue, 20 Aug 2019 15:55:54 +0800
-Subject: [PATCH 12/13] arm64: dts: rockchip: rk3399pro-npu: correct pvtm
+Subject: [PATCH 12/17] arm64: dts: rockchip: rk3399pro-npu: correct pvtm
  channel of npu
 
 Change-Id: I875bff4cef6282789e050df437d3e610f390eff1

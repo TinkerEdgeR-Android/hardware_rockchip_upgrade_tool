@@ -1,7 +1,7 @@
-From d0c4eae302ff140d8b2c2860326c1f3350f248ba Mon Sep 17 00:00:00 2001
+From e8aa13b3f6935c2a6af169e2d3dce206af53dd0d Mon Sep 17 00:00:00 2001
 From: Allon Huang <allon.huang@rock-chips.com>
 Date: Fri, 16 Aug 2019 17:11:33 +0800
-Subject: [PATCH 03/13] drivers: platform: rockchip: cif: fix dvp camera fails
+Subject: [PATCH 03/17] drivers: platform: rockchip: cif: fix dvp camera fails
  to link with cif on rk1808
 
 support yuv format for cif and let dvp camera link to cif on rk1808

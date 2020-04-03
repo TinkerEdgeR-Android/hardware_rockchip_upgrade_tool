@@ -1,7 +1,7 @@
-From 17872c26fa5dfc14fb2020ab57dcdebd2b1eb4c6 Mon Sep 17 00:00:00 2001
+From 2f2c6514b2c7e9bf8fd9add5096d24fb8f935df3 Mon Sep 17 00:00:00 2001
 From: Simon Xue <xxm@rock-chips.com>
 Date: Mon, 30 Sep 2019 10:26:19 +0800
-Subject: [PATCH 05/13] PCI: rockchip: dw: support turn off phy pd when suspend
+Subject: [PATCH 05/17] PCI: rockchip: dw: support turn off phy pd when suspend
 
 1. keep atu index when resume
 2. reconfigure phy and atu when resume

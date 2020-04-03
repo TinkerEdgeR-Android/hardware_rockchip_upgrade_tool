@@ -1,7 +1,7 @@
-From 9a98b3f808b088e480f9d5442c186d6261c1a065 Mon Sep 17 00:00:00 2001
+From 2be4717cc1f7c393d00034b668a5099bca94b0c4 Mon Sep 17 00:00:00 2001
 From: Simon Xue <xxm@rock-chips.com>
 Date: Mon, 30 Sep 2019 10:47:54 +0800
-Subject: [PATCH 07/13] PCI: rockchip: disable ltssm when PCIe suspend
+Subject: [PATCH 07/17] PCI: rockchip: disable ltssm when PCIe suspend
 
 In case of ep auto relinking when resume,
 we need to disable ltssm of rc first before ep suspend

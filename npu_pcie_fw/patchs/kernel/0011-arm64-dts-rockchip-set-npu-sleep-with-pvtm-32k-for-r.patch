@@ -1,7 +1,7 @@
-From 322cec68d1abf651b75ec8910d1b8d3fb4aa71c0 Mon Sep 17 00:00:00 2001
+From 719e8373cfdb141424983526349e41a3cae6cbdf Mon Sep 17 00:00:00 2001
 From: Weixin Zhou <zwx@rock-chips.com>
 Date: Thu, 9 Jan 2020 14:27:20 +0800
-Subject: [PATCH 11/13] arm64: dts: rockchip: set npu sleep with pvtm 32k for
+Subject: [PATCH 11/17] arm64: dts: rockchip: set npu sleep with pvtm 32k for
  rk3399pro-npu
 
 Change-Id: I45cba07b58e2d35f8088dba6ec9b7442001e2312

@@ -1,7 +1,7 @@
-From c3ead68efbbae5c1872af47227f708bff12d5b3e Mon Sep 17 00:00:00 2001
+From a0de5c6e25d8b3ad9fa9e87ebd5bd7775c351adc Mon Sep 17 00:00:00 2001
 From: Kaige Li <kevin.li@rock-chips.com>
 Date: Tue, 17 Sep 2019 11:21:28 +0800
-Subject: [PATCH 04/13] media: platform: add camera support hotplug for n4.
+Subject: [PATCH 04/17] media: platform: add camera support hotplug for n4.
 
 Change-Id: Id9868021c6e959f0e5f286a609a57c95b0af8e09
 Signed-off-by: Kaige Li <kevin.li@rock-chips.com>

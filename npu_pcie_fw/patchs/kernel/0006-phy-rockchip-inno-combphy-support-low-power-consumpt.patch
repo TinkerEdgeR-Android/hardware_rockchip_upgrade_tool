@@ -1,7 +1,7 @@
-From cc6b3d43b5fe604233e9a74531d860e38cd3ceb1 Mon Sep 17 00:00:00 2001
+From 974385835e41368b9dd9f5541425f05d9cb3abf1 Mon Sep 17 00:00:00 2001
 From: Simon Xue <xxm@rock-chips.com>
 Date: Mon, 30 Sep 2019 10:33:52 +0800
-Subject: [PATCH 06/13] phy: rockchip-inno-combphy: support low power
+Subject: [PATCH 06/17] phy: rockchip-inno-combphy: support low power
  consumption mode
 
 Support low power consumption mode when PCIe suspend.

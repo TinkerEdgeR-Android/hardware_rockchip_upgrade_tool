@@ -1,7 +1,7 @@
-From e6a6d65c07633018d9527ed753839c956d861d51 Mon Sep 17 00:00:00 2001
+From c8ee7889cf325e46dc83108ec8a31706d9e12b60 Mon Sep 17 00:00:00 2001
 From: Shunqian Zheng <zhengsq@rock-chips.com>
 Date: Fri, 23 Aug 2019 05:53:32 +0000
-Subject: [PATCH 02/13] media: rockchip: cif: add framesizes and frmintervals
+Subject: [PATCH 02/17] media: rockchip: cif: add framesizes and frmintervals
  ioctls
 
 These two callbacks are required for applications to obtain
