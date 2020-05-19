@@ -24,53 +24,53 @@ BOOT_ADDR=0x21000
 function download_func()
 {
 	local RET1=1
-	echo 'start to download loader...' >  /dev/ttyFIQ0
+	echo 'start to download loader...' >>  /data/vendor/npu.log
 	$UPGRADE_TOOL db $LOADER > /dev/null
 	if [ $? -ne 0 ]; then
-		echo 'failed to download loader!' >  /dev/ttyFIQ0
+		echo 'failed to download loader!' >>  /data/vendor/npu.log
 		return $RET1;
 	fi
-	echo 'download loader ok' >  /dev/ttyFIQ0
+	echo 'download loader ok' >>  /data/vendor/npu.log
 
 	sleep 1
-	echo 'start to wait loader...' >  /dev/ttyFIQ0
+	echo 'start to wait loader...' >>  /data/vendor/npu.log
 	$UPGRADE_TOOL td > /dev/null
 	if [ $? -ne 0 ]; then
-		echo 'failed to wait loader!' >  /dev/ttyFIQ0
+		echo 'failed to wait loader!' >>  /data/vendor/npu.log
 		return $RET1
 	fi
-	echo 'loader is ready'  >  /dev/ttyFIQ0
+	echo 'loader is ready'  >>  /data/vendor/npu.log
 
-	echo 'start to write uboot...' >  /dev/ttyFIQ0
+	echo 'start to write uboot...' >>  /data/vendor/npu.log
 	$UPGRADE_TOOL wl $UBOOT_ADDR $UBOOT > /dev/null
 	if [ $? -ne 0 ]; then
-		echo 'failed to write uboot!' >  /dev/ttyFIQ0
+		echo 'failed to write uboot!' >>  /data/vendor/npu.log
 		return $RET1
 	fi
-	echo 'write uboot ok' >  /dev/ttyFIQ0
+	echo 'write uboot ok' >>  /data/vendor/npu.log
 
 	echo 'start to write trust...'
 	$UPGRADE_TOOL wl $TRUST_ADDR $TRUST > /dev/null
 	if [ $? -ne 0 ]; then
-		echo 'failed to write trust!' >  /dev/ttyFIQ0
+		echo 'failed to write trust!' >>  /data/vendor/npu.log
 		return $RET1
 	fi
-	echo 'write trust ok' >  /dev/ttyFIQ0
+	echo 'write trust ok' >>  /data/vendor/npu.log
 
-	echo 'start to write boot...' >  /dev/ttyFIQ0
+	echo 'start to write boot...' >>  /data/vendor/npu.log
 	$UPGRADE_TOOL wl $BOOT_ADDR $BOOT > /dev/null
 	if [ $? -ne 0 ]; then
-		echo 'failed to write boot!' >  /dev/ttyFIQ0
+		echo 'failed to write boot!' >>  /data/vendor/npu.log
 		return $RET1
 	fi
-	echo 'write boot ok' >  /dev/ttyFIQ0
+	echo 'write boot ok' >>  /data/vendor/npu.log
 	RET1=0
 	return $RET1
 }
 
 function check_device_ready_func()
 {
-	echo 'start to wait device...' >  /dev/ttyFIQ0
+	echo 'start to wait device...' >  /data/vendor/npu.log
 	local i=0
 	local RET=1
 	while [ $i -lt 10 ]; do
@@ -86,14 +86,14 @@ function check_device_ready_func()
 		if [ $i -eq 5 ]; then
 			/vendor/bin/npu_powerctrl -o
 			sleep 3
-			echo 'reset npu to retry!!!' > /dev/ttyFIQ0
+			echo 'reset npu to retry!!!' >>  /data/vendor/npu.log
 		fi
 	done
 	if [ $i -ge 10 ]; then
-		echo 'failed to wait device!'  >  /dev/ttyFIQ0
+		echo 'failed to wait device!'  >>  /data/vendor/npu.log
 		return $RET
 	fi
-	echo 'device is ready' >  /dev/ttyFIQ0
+	echo 'device is ready' >>  /data/vendor/npu.log
 	RET=0
 	return $RET
 }
@@ -133,7 +133,7 @@ fi
 
 check_device_ready_func
 if [ $? = 1 ];then
-	echo "check_device_ready error!!!" > /dev/ttyFIQ0
+	echo "check_device_ready error!!!" >>  /data/vendor/npu.log
 	poweron_Npu_func
 	check_device_ready_func
 fi
@@ -146,10 +146,10 @@ if [ $? = 1 ];then
 	download_func
 fi
 
-echo 'start to run system...' >  /dev/ttyFIQ0
+echo 'start to run system...' >>  /data/vendor/npu.log
 $UPGRADE_TOOL rs $UBOOT_ADDR $TRUST_ADDR $BOOT_ADDR $UBOOT $TRUST $BOOT > /dev/null
 if [ $? -ne 0 ]; then
-	echo 'failed to run system!' >  /dev/ttyFIQ0
+	echo 'failed to run system!' >>  /data/vendor/npu.log
 	exit
 fi
-echo 'run system ok' >  /dev/ttyFIQ0
+echo 'run system ok' >>  /data/vendor/npu.log
