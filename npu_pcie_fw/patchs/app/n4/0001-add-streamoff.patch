@@ -1,0 +1,30 @@
+From 5d0def693107fc1ab5ea726d140285983ebbd6d3 Mon Sep 17 00:00:00 2001
+From: Weixin Zhou <zwx@rock-chips.com>
+Date: Tue, 7 Apr 2020 17:02:43 +0800
+Subject: [PATCH] add streamoff
+
+Change-Id: Iefbd8762741878e15e25e99ee987469ddd9f0778
+---
+ main.cc | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/main.cc b/main.cc
+index afe4beb..9525d4d 100644
+--- a/main.cc
++++ b/main.cc
+@@ -487,9 +487,12 @@ int main() {
+       WriteMsg(port, ms);
+     } break;
+     case VIDIOC_STREAMOFF: {
++	printf("+++ FLC-DBG: VIDIOC_STREAMOFF enter.\n");
+       n4.reset();
++	printf("+++ FLC-DBG: VIDIOC_STREAMOFF reset finished!.\n");
+       ms->ret_value = 0;
+       WriteMsg(port, ms);
++	printf("+++ FLC-DBG: VIDIOC_STREAMOFF writeMsg end!.\n");
+     } break;
+     }
+     free(ms);
+-- 
+2.7.4
+

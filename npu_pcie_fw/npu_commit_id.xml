@@ -19,7 +19,7 @@
   <project name="linux/external/rknpu" path="npu/external/rknpu" remote="npu" revision="1121c481b6fcff3f5b9982259192089c03c63725" upstream="master"/>
   <project name="linux/external/rkscript" path="npu/external/rkscript" remote="npu" revision="00794eb93c999efaaccc407a5afaccbffd64c93b" upstream="master"/>
   <project name="linux/linux-rga" path="npu/external/linux-rga" remote="npu" revision="29235b16ed7f94a8b4c754fe083782121d350799" upstream="master"/>
-  <project name="linux/rkmedia" path="npu/external/rkmedia" remote="npu" revision="6848a649235e4923868f4f6b0c5272784de72d63" upstream="master"/>
+  <project name="linux/rkmedia" path="npu/external/rkmedia" remote="npu" revision="f369d582dc45f27cde952a35ca0930a03b6b183f" upstream="master"/>
   <project name="linux/tools" path="npu/tools" remote="npu" revision="4c417796e3d45b926124cdf4613ba25f1ee25832" upstream="master">
     <linkfile dest="npu/tools/windows/AndroidTool/AndroidTool_Release/config.cfg" src="windows/AndroidTool/AndroidTool_Release/rk1808-config.cfg"/>
     <linkfile dest="npu/tools/windows/AndroidTool/rockdev/package-file" src="windows/AndroidTool/rockdev/rk1808-package-file"/>
