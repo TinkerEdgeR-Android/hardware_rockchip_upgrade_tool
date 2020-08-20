@@ -1,0 +1,93 @@
+From 4c531d52762d6ea720d77e13bd2968d09e85cde8 Mon Sep 17 00:00:00 2001
+From: Weixin Zhou <zwx@rock-chips.com>
+Date: Wed, 20 May 2020 15:26:04 +0800
+Subject: [PATCH 5/5] arm64: dts: rockchip: rk3399pro-npu: add syr837 support
+ for vdd_npu
+
+Signed-off-by: Weixin Zhou <zwx@rock-chips.com>
+Change-Id: Ib0cab37bdb07e01378f52c12ac3e2f4f4e0ba8d4
+---
+ .../rockchip/rk3399pro-npu-evb-v10-multi-cam.dts   | 22 ++++++++++++++++++++++
+ .../boot/dts/rockchip/rk3399pro-npu-evb-v10.dts    | 22 ++++++++++++++++++++++
+ 2 files changed, 44 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399pro-npu-evb-v10-multi-cam.dts b/arch/arm64/boot/dts/rockchip/rk3399pro-npu-evb-v10-multi-cam.dts
+index 5aa4a68..a506c69 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399pro-npu-evb-v10-multi-cam.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399pro-npu-evb-v10-multi-cam.dts
+@@ -224,6 +224,27 @@
+ 		};
+ 	};
+ 
++	vdd_npu_1: syr837@40 {
++		compatible = "silergy,syr827";
++		reg = <0x40>;
++		vin-supply = <&vcc5v0_sys>;
++		regulator-compatible = "fan53555-reg";
++		pinctrl-0 = <&vsel_gpio>;
++		vsel-gpios = <&gpio0 RK_PC6 GPIO_ACTIVE_HIGH>;
++		regulator-name = "vdd_npu_1";
++		regulator-min-microvolt = <750000>;
++		regulator-max-microvolt = <880000>;
++		regulator-init-microvolt = <880000>;
++		regulator-ramp-delay = <2300>;
++		fcs,suspend-voltage-selector = <1>;
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-initial-state = <3>;
++		regulator-state-mem {
++			regulator-off-in-suspend;
++		};
++	};
++
+ 	vcamera@30 {
+ 		compatible = "rockchip,virtual-camera";
+ 		reg = <0x30>;
+@@ -242,6 +263,7 @@
+ 
+ &npu {
+ 	npu-supply = <&vdd_npu>;
++	npu_1-supply = <&vdd_npu_1>;
+ 	status = "okay";
+ };
+ 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399pro-npu-evb-v10.dts b/arch/arm64/boot/dts/rockchip/rk3399pro-npu-evb-v10.dts
+index ed4a7d7..c12a2f9 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399pro-npu-evb-v10.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399pro-npu-evb-v10.dts
+@@ -111,10 +111,32 @@
+ 			regulator-off-in-suspend;
+ 		};
+ 	};
++
++	vdd_npu_1: syr837@40 {
++		compatible = "silergy,syr827";
++		reg = <0x40>;
++		vin-supply = <&vcc5v0_sys>;
++		regulator-compatible = "fan53555-reg";
++		pinctrl-0 = <&vsel_gpio>;
++		vsel-gpios = <&gpio0 RK_PC6 GPIO_ACTIVE_HIGH>;
++		regulator-name = "vdd_npu_1";
++		regulator-min-microvolt = <750000>;
++		regulator-max-microvolt = <880000>;
++		regulator-init-microvolt = <880000>;
++		regulator-ramp-delay = <2300>;
++		fcs,suspend-voltage-selector = <1>;
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-initial-state = <3>;
++		regulator-state-mem {
++			regulator-off-in-suspend;
++		};
++	};
+ };
+ 
+ &npu {
+ 	npu-supply = <&vdd_npu>;
++	npu_1-supply = <&vdd_npu_1>;
+ 	status = "okay";
+ };
+ 
+-- 
+2.7.4
+

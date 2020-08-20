@@ -1,4 +1,5 @@
 service npu_upgrade vendor/bin/npu_upgrade MiniLoaderAll.bin uboot.img trust.img boot.img
     class core
     oneshot
+    group system wakelock
     seclabel u:r:npu_upgrade:s0
